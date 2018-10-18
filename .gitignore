@@ -1,0 +1,38 @@
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+### Builder
+target/
+test-output/
+.gradle/
+build/
+out/
+local.properties
+
+### IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+### Eclipse
+.settings/
+.project
+.classpath
+.mymetadata
+.apt_generated
+.factorypath
+.springBeans
+
+### Other
+.DS_Store
+*.log
+
+src/test/java/**/*.java
+src/test/resources/**/*.xml
+src/test/resources/**/*.txt
