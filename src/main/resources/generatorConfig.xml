@@ -44,13 +44,13 @@
         </plugin>
 
         <!-- table info -->
-        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+        <!--<plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
             <property name="singleMode" value="false"/>
             <property name="targetProject" value="src/test/resources"/>
             <property name="targetPackage" value="./"/>
             <property name="templatePath" value="generator/test-all.ftl"/>
             <property name="fileName" value="table-all.txt"/>
-        </plugin>
+        </plugin>-->
 
         <!--Manager-->
         <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
@@ -63,7 +63,7 @@
         </plugin>
 
         <!--Service-->
-        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+        <!--<plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
             <property name="targetProject" value="src/test/java"/>
             <property name="targetPackage" value="new_package.service"/>
             <property name="templatePath" value="META-INF/service.ftl"/>
@@ -71,7 +71,7 @@
 
             <property name="managerPackage" value="new_package.manager"/>
             <property name="baseService" value="replace_code.BaseService"/>
-        </plugin>
+        </plugin>-->
 
         <!--<commentGenerator>
             <property name="suppressAllComments" value="true"/>

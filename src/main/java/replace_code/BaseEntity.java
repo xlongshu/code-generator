@@ -44,10 +44,5 @@ public class BaseEntity implements Serializable {
     @Column(name = "modified_date")
     @Temporal(TemporalType.TIMESTAMP)
     protected Date modifiedDate;
-    /**
-     * 备注
-     */
-    @Column(name = "remark")
-    protected String remark;
 
 }
