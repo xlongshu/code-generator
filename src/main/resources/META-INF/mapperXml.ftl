@@ -21,7 +21,7 @@
         SELECT
         <#list (tableClass.allFields) as field>
             t.${field.columnName} /*${field.remarks}*/<#if field_has_next>,${newLine}</#if></#list>
-        FROM `${tableClass.tableName}` AS t
+        FROM ${tableClass.tableName} AS t
         ]]>
     </sql>
 

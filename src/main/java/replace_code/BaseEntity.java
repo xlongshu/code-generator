@@ -19,9 +19,9 @@ public class BaseEntity implements Serializable {
     /**
      * 主键
      * <pre>
-     * 1.全部数据库通用的@GeneratedValue(META-INF="UUID")
-     * 2.useGeneratedKeys的@GeneratedValue(META-INF="JDBC")
-     * 3.类似mysql数据库的@GeneratedValue(strategy=GenerationType.IDENTITY[,META-INF="Mysql"])
+     * 1.全部数据库通用的@GeneratedValue(generator="UUID")
+     * 2.useGeneratedKeys的@GeneratedValue(generator="JDBC")
+     * 3.类似mysql数据库的@GeneratedValue(strategy=GenerationType.IDENTITY[,generator="Mysql"])
      * </pre>
      */
     @Id

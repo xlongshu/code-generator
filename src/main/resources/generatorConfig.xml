@@ -15,7 +15,7 @@
         </plugin>
 
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="replace_code.BaseDao"/>
+            <property name="mappers" value="replace_code.BaseMapper"/>
             <property name="caseSensitive" value="true"/>
             <property name="forceAnnotation" value="true"/>
             <!--<property name="beginningDelimiter" value="`"/>-->
@@ -28,8 +28,8 @@
             <property name="targetProject" value="src/test/resources"/>
             <property name="targetPackage" value="mapper"/>
             <property name="templatePath" value="META-INF/mapperXml.ftl"/>
+            <property name="mapperSuffix" value="Mapper"/>
             <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.xml"/>
-            <property name="mapperSuffix" value="Dao"/>
             <property name="mapperPackage" value="new_package.dao"/>
         </plugin>
         <!--mapper.java-->
@@ -37,10 +37,10 @@
             <property name="targetProject" value="src/test/java"/>
             <property name="targetPackage" value="new_package.dao"/>
             <property name="templatePath" value="META-INF/mapper.ftl"/>
+            <property name="mapperSuffix" value="Mapper"/>
             <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
-            <property name="mapperSuffix" value="Dao"/>
 
-            <property name="baseDao" value="replace_code.BaseDao"/>
+            <property name="baseDao" value="replace_code.BaseMapper"/>
         </plugin>
 
         <!-- table info -->
@@ -62,21 +62,10 @@
             <property name="baseManager" value="replace_code.BaseManager"/>
         </plugin>
 
-        <!--Service-->
-        <!--<plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
-            <property name="targetProject" value="src/test/java"/>
-            <property name="targetPackage" value="new_package.service"/>
-            <property name="templatePath" value="META-INF/service.ftl"/>
-            <property name="fileName" value="${tableClass.shortClassName}Service.java"/>
-
-            <property name="managerPackage" value="new_package.manager"/>
-            <property name="baseService" value="replace_code.BaseService"/>
-        </plugin>-->
-
-        <!--<commentGenerator>
+        <commentGenerator>
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
-        </commentGenerator>-->
+        </commentGenerator>
 
         <jdbcConnection userId="${username}" password="${password}"
                         driverClass="${driverClass}" connectionURL="${jdbcUrl}"/>
@@ -86,7 +75,7 @@
         </javaTypeResolver>
 
         <!--Model-->
-        <javaModelGenerator targetPackage="new_package.domain" targetProject="src/test/java">
+        <javaModelGenerator targetPackage="new_package.entity" targetProject="src/test/java">
             <property name="rootClass" value="replace_code.BaseEntity"/>
             <property name="enableSubPackages" value="false"/>
         </javaModelGenerator>
@@ -99,7 +88,7 @@
         </javaClientGenerator>-->
 
         <!-- all table -->
-        <table tableName="%" schema="${schema}">
+        <table tableName="jta_%" schema="${schema}">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
         </table>
 

@@ -21,10 +21,10 @@ public abstract class BaseManager<E extends BaseEntity> {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @javax.inject.Inject
-    protected BaseDao<E> dao;
+    protected BaseMapper<E> mapper;
 
-    public BaseDao<E> getDao() {
-        return dao;
+    public BaseMapper<E> getMapper() {
+        return mapper;
     }
 
     protected E preInsert(E entity) {
@@ -39,12 +39,12 @@ public abstract class BaseManager<E extends BaseEntity> {
 
     @Transactional
     public int insert(E entity) {
-        return dao.insert(preInsert(entity));
+        return getMapper().insert(preInsert(entity));
     }
 
     @Transactional
     public int insertSelective(E entity) {
-        return dao.insertSelective(preInsert(entity));
+        return getMapper().insertSelective(preInsert(entity));
     }
 
     @Transactional
@@ -52,7 +52,7 @@ public abstract class BaseManager<E extends BaseEntity> {
         for (E entity : recordList) {
             preInsert(entity);
         }
-        return dao.insertList(recordList);
+        return getMapper().insertList(recordList);
     }
 
     @Transactional
@@ -74,42 +74,42 @@ public abstract class BaseManager<E extends BaseEntity> {
     public int deleteByKey(E entity) {
         entity.setYn(Boolean.TRUE);
         return this.updateByKeySelective(entity);
-        //return dao.deleteByPrimaryKey(entity);
+        //return getMapper().deleteByPrimaryKey(entity);
     }
 
     //********************************************//
 
     @Transactional
     public int updateByKey(E entity) {
-        return dao.updateByPrimaryKey(entity);
+        return getMapper().updateByPrimaryKey(entity);
     }
 
     @Transactional
     public int updateByKeySelective(E entity) {
-        return dao.updateByPrimaryKeySelective(entity);
+        return getMapper().updateByPrimaryKeySelective(entity);
     }
 
     //********************************************//
 
     public E selectOne(E entity) {
         PageHelper.offsetPage(0, 1, false);
-        return dao.selectOne(entity);
+        return getMapper().selectOne(entity);
     }
 
     public List<E> select(E entity) {
-        return dao.select(entity);
+        return getMapper().select(entity);
     }
 
     public List<E> selectAll() {
-        return dao.selectAll();
+        return getMapper().selectAll();
     }
 
     public E selectByKey(Serializable key) {
-        return dao.selectByPrimaryKey(key);
+        return getMapper().selectByPrimaryKey(key);
     }
 
-    public int selectCount(E condition) {
-        return getDao().selectCount(condition);
+    public long selectCount(E condition) {
+        return getMapper().selectCount(condition);
     }
 
     //********************************************//
@@ -118,7 +118,7 @@ public abstract class BaseManager<E extends BaseEntity> {
         // 物理分页, 包含count查询
         PageHelper.startPage(pageNum, pageSize);
         // list -> com.github.pagehelper.Page
-        Page<E> page = (Page<E>) getDao().select(condition);
+        Page<E> page = (Page<E>) getMapper().select(condition);
         return page;
     }
 
@@ -126,40 +126,46 @@ public abstract class BaseManager<E extends BaseEntity> {
         // 物理分页, 包含count查询
         PageHelper.startPage(page.getPageNum(), page.getPageSize(), page.isCount());
         // list -> com.github.pagehelper.Page
-        page = (Page<E>) getDao().select(condition);
+        page = (Page<E>) getMapper().select(condition);
         return page;
     }
 
     //********************************************//
 
+    @Transactional
     public int updateByCondition(E entity, Example condition) {
-        return getDao().updateByExampleSelective(entity, condition);
+        return getMapper().updateByExample(entity, condition);
+    }
+
+    @Transactional
+    public int updateByConditionSelective(E entity, Example condition) {
+        return getMapper().updateByExampleSelective(entity, condition);
     }
 
     public E selectOneByCondition(Example condition) {
         PageHelper.offsetPage(0, 1, false);
-        return getDao().selectOneByExample(condition);
+        return getMapper().selectOneByExample(condition);
     }
 
     public List<E> selectByCondition(Example condition) {
-        return getDao().selectByExample(condition);
+        return getMapper().selectByExample(condition);
     }
 
     public Page<E> selectPageByCondition(Example condition, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        Page<E> page = (Page<E>) getDao().selectByExample(condition);
+        Page<E> page = (Page<E>) getMapper().selectByExample(condition);
         return page;
     }
 
     public Page<E> selectPageByCondition(Example condition, Page<E> page) {
         PageHelper.startPage(page.getPageNum(), page.getPageSize(), page.isCount());
-        page = (Page<E>) getDao().selectByExample(condition);
+        page = (Page<E>) getMapper().selectByExample(condition);
 
         return page;
     }
 
-    public int selectCountByCondition(Example condition) {
-        return getDao().selectCountByExample(condition);
+    public long selectCountByCondition(Example condition) {
+        return getMapper().selectCountByExample(condition);
     }
 
 }

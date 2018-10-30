@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.xlongshu.maven</groupId>
         <artifactId>java-starter</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -14,10 +14,6 @@
     <artifactId>core-generator</artifactId>
     <packaging>jar</packaging>
     <description>代码生成器</description>
-
-    <properties>
-        <mybatis-mapper.version>4.0.4</mybatis-mapper.version>
-    </properties>
 
     <dependencies>
         <dependency>

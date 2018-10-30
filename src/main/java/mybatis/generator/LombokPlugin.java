@@ -36,7 +36,7 @@ public class LombokPlugin extends PluginAdapter {
     public void setProperties(Properties properties) {
         super.setProperties(properties);
 
-        author = properties.getProperty("author", "mybatis-META-INF");
+        author = properties.getProperty("author", "code-generator");
         addSerializable = Boolean.valueOf(properties.getProperty("addSerializable"));
         serializable = new FullyQualifiedJavaType("java.io.Serializable");
     }
