@@ -29,8 +29,10 @@ public abstract class BaseManager<E extends BaseEntity> {
 
     protected E preInsert(E entity) {
         Date now = new Date();
-        entity.setCreatedDate(now);
-        entity.setModifiedDate(now);
+        if (entity.getCreatedDate() == null) {
+            entity.setCreatedDate(now);
+        }
+        //entity.setModifiedDate(now);
         entity.setYn(Boolean.TRUE);
         return entity;
     }
