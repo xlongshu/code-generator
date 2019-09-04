@@ -61,6 +61,14 @@
 
             <property name="baseManager" value="replace_code.BaseManager"/>
         </plugin>
+        <!--Dto-->
+        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+            <property name="targetProject" value="src/test/java"/>
+            <property name="targetPackage" value="new_package.dto"/>
+            <property name="templatePath" value="META-INF/Vo.ftl"/>
+            <property name="suffix" value="Dto"/>
+            <property name="fileName" value="${tableClass.shortClassName}${suffix}.java"/>
+        </plugin>
 
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
@@ -87,10 +95,16 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>-->
 
-        <!-- all table -->
-        <table tableName="jta_%" schema="${schema}">
+        <!-- all table pattern: t_%, xxx% -->
+        <table tableName="%" schema="${schema}">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
         </table>
+
+        <!--
+        <table tableName="t_user" domainObjectName="UserEntity" schema="${schema}">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        -->
 
     </context>
 </generatorConfiguration>

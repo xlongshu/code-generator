@@ -11,6 +11,7 @@ import tk.mybatis.mapper.common.ids.SelectByIdsMapper;
  * @see tk.mybatis.mapper.common.BaseMapper
  * @see tk.mybatis.mapper.common.Mapper
  */
+//@tk.mybatis.mapper.annotation.RegisterMapper
 public interface BaseMapper<T> extends
         Mapper<T>,
         SelectByIdsMapper<T>,

@@ -3,12 +3,7 @@ package mybatis.generator;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
-import org.mybatis.generator.api.dom.java.Field;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.Interface;
-import org.mybatis.generator.api.dom.java.JavaVisibility;
-import org.mybatis.generator.api.dom.java.Method;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
+import org.mybatis.generator.api.dom.java.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,12 +42,12 @@ public class LombokPlugin extends PluginAdapter {
         topLevelClass.addJavaDocLine(" * @since " + dateFormat.format(now));
         topLevelClass.addJavaDocLine(" */");
 
-        topLevelClass.addImportedType("lombok.experimental.Accessors");
+//        topLevelClass.addImportedType("lombok.experimental.Accessors");
 
         topLevelClass.addAnnotation("@lombok.Getter");
         topLevelClass.addAnnotation("@lombok.Setter");
         topLevelClass.addAnnotation("@lombok.ToString");
-        topLevelClass.addAnnotation("@Accessors(chain = true)");
+//        topLevelClass.addAnnotation("@Accessors(chain = true)");
         topLevelClass.addAnnotation("@lombok.NoArgsConstructor");
     }
 
